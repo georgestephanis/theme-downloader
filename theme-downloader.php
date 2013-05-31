@@ -18,6 +18,7 @@ class Theme_Downloader_Plugin {
 
 		add_filter( 'theme_action_links', array( $this, 'theme_action_links' ), 10, 2 );
 		add_action( 'wp_ajax_download_theme', array( $this, 'wp_ajax_download_theme' ) );
+		add_action( 'admin_footer-themes.php', array( $this, 'admin_footer_themes_php' ) );
 	}
 
 	function theme_action_links( $actions, $theme ) {
@@ -37,10 +38,26 @@ class Theme_Downloader_Plugin {
 		if( ! current_user_can( 'edit_themes' ) ) {
 			wp_die( __( 'Cheatin&#8217; uh?' ) );
 		}
-		$theme = new WP_Theme( addslashes( $_REQUEST['theme'] ), get_theme_root() );
+		$theme = null;
+		if( ! empty( $_REQUEST['theme'] ) ) {
+			$theme = new WP_Theme( addslashes( $_REQUEST['theme'] ), get_theme_root() );
+		}
 		$zip_file_location = Theme_Downloader::build_zip( $theme );
 		Theme_Downloader::download( $zip_file_location );
-		exit;
+	}
+
+	function admin_footer_themes_php() {
+		if( ! current_user_can( 'edit_themes' ) || ! Theme_Downloader::can_zip() ) {
+			return;
+		}
+		$args = array(
+			'action' => 'download_theme',
+			'theme' => wp_get_theme()->get_stylesheet(),
+		);
+		$download_url = esc_url( add_query_arg( $args, admin_url( 'admin-ajax.php' ) ) );
+		?>
+		<script>jQuery('#current-theme .theme-options ul').prepend('<li><a href="<?php echo $download_url; ?>"><?php echo esc_attr__('Download'); ?></a></li>');</script>
+		<?php
 	}
 }
 

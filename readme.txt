@@ -20,6 +20,8 @@ If your server is capable of making Zip archives, and your user account has the 
 
 Enjoy!  :)
 
+P.S. -- If the author of your theme didn't license it on a GPL-compliant license, make sure you're not breaking any licensing terms by what you do with the theme once you've downloaded it!
+
 == Installation ==
 
 1. Install and activate the plugin via the WordPress Plugin Installer.

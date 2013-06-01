@@ -43,7 +43,13 @@ class Theme_Downloader_Plugin {
 			$theme = new WP_Theme( addslashes( $_REQUEST['theme'] ), get_theme_root() );
 		}
 		$zip_file_location = Theme_Downloader::build_zip( $theme );
-		Theme_Downloader::download( $zip_file_location );
+		if( is_wp_error( $zip_file_location ) ) {
+			wp_die( $zip_file_location->get_error_message() );
+		}
+		$result = Theme_Downloader::download( $zip_file_location );
+		if( is_wp_error( $result ) ) {
+			wp_die( $result->get_error_message() );
+		}
 	}
 
 	function admin_footer_themes_php() {

@@ -16,12 +16,16 @@ class Theme_Downloader_Plugin {
 	function __construct( $theme = null ) {
 		self::$instance = $this;
 
-		add_filter( 'theme_action_links', array( $this, 'theme_action_links' ), 10, 2 );
+		add_filter( 'theme_action_links', array( $this, 'theme_action_links' ), 10, 3 );
 		add_action( 'wp_ajax_download_theme', array( $this, 'wp_ajax_download_theme' ) );
 		add_action( 'admin_footer-themes.php', array( $this, 'admin_footer_themes_php' ) );
 	}
 
-	function theme_action_links( $actions, $theme ) {
+	function theme_action_links( $actions, $theme, $ms_theme = null ) {
+		if( is_a( $ms_theme, 'WP_Theme' ) ) {
+			// The user is in the Network Admin panel, and it passes different arguments to the filter.
+			$theme = $ms_theme;
+		}
 		if( current_user_can( 'edit_themes' ) && Theme_Downloader::can_zip() ) {
 			$args = array(
 				'action' => 'download_theme',

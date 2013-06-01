@@ -58,6 +58,7 @@ class Theme_Downloader {
 
 		readfile( $file_path );
 
+		@unlink( $file_path );
 		exit;
 	}
 }

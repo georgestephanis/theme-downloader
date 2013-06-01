@@ -48,6 +48,7 @@ class Theme_Downloader_Plugin {
 		}
 		$result = Theme_Downloader::download( $zip_file_location );
 		if( is_wp_error( $result ) ) {
+			@unlink( $zip_file_location );
 			wp_die( $result->get_error_message() );
 		}
 	}

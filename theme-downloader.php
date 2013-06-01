@@ -4,7 +4,7 @@
  * Plugin URI: http://wordpress.org/plugins/theme-downloader/
  * Description: Gives a quick and convenient way to download a theme installed on the current site as a zip file.
  * Author: George Stephanis
- * Version: 1.0
+ * Version: 1.0.1
  * Author URI: http://stephanis.info/
  */
 

@@ -4,11 +4,11 @@ Donate link: https://www.charitywater.org/donate
 Tags: Theme, Download, Zip
 Requires at least: 3.4
 Tested up to: 3.6
-Stable tag: 1.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A handy dandy plugin that tries to let you download any installed theme as a zip file, if your server supports it.
+A handy dandy plugin that tries to let you download any installed theme as a zip file.
 
 == Description ==
 
@@ -37,6 +37,9 @@ Well, there's two possible reasons.  For one, your server may not be able to cre
 The second possible reason is if you don't have the proper capabilities.  If you don't have the `edit_themes` capability, you can't download them either.  Sorry!
 
 == Changelog ==
+
+= 1.0.1 =
+* Added some code in r721178 to account for Network Admin Themes page passing different arguments to the theme_action_links filter.
 
 = 1.0 =
 * Initial release.

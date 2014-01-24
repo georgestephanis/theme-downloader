@@ -1,0 +1,29 @@
+Index: wp-admin/themes.php
+===================================================================
+--- wp-admin/themes.php	(revision 27025)
++++ wp-admin/themes.php	(working copy)
+@@ -301,6 +301,8 @@
+ 		<a class="button button-secondary hide-if-customize" href="{{{ data.actions.preview }}}"><?php _e( 'Preview' ); ?></a>
+ 	<# } #>
+ 
++	<?php do_action( 'tmpl-theme_actions', 'tmpl-theme' ); ?>
++
+ 	</div>
+ 
+ 	<# if ( data.hasUpdate ) { #>
+@@ -354,6 +356,7 @@
+ 			<div class="active-theme">
+ 				<a href="{{{ data.actions.customize }}}" class="button button-primary customize load-customize hide-if-no-customize"><?php _e( 'Customize' ); ?></a>
+ 				<?php echo implode( ' ', $current_theme_actions ); ?>
++				<?php do_action( 'tmpl-theme-single_actions', 'active' ); ?>
+ 			</div>
+ 			<div class="inactive-theme">
+ 				<# if ( data.actions.activate ) { #>
+@@ -361,6 +364,7 @@
+ 				<# } #>
+ 				<a href="{{{ data.actions.customize }}}" class="button button-secondary load-customize hide-if-no-customize"><?php _e( 'Live Preview' ); ?></a>
+ 				<a href="{{{ data.actions.preview }}}" class="button button-secondary hide-if-customize"><?php _e( 'Preview' ); ?></a>
++				<?php do_action( 'tmpl-theme-single_actions', 'inactive' ); ?>
+ 			</div>
+ 
+ 			<# if ( ! data.active && data.actions['delete'] ) { #>

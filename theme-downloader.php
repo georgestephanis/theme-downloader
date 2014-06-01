@@ -73,9 +73,12 @@ class Theme_Downloader_Plugin {
 			'action' => 'download_theme',
 			'theme' => wp_get_theme()->get_stylesheet(),
 		);
-		$download_url = esc_url( add_query_arg( $args, admin_url( 'admin-ajax.php' ) ) );
+		$download_url = add_query_arg( $args, admin_url( 'admin-ajax.php' ) );
 		?>
-		<script>jQuery('#current-theme .theme-options ul').prepend('<li><a href="<?php echo $download_url; ?>"><?php echo esc_attr__('Download'); ?></a></li>');</script>
+		<script>
+		jQuery( '#current-theme .theme-options ul' )
+			.prepend( '<li><a href="<?php echo esc_url( $download_url ); ?>"><?php echo esc_js( __( 'Download' ) ); ?></a></li>' );
+		</script>
 		<?php
 	}
 

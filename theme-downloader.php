@@ -21,7 +21,7 @@ class Theme_Downloader_Plugin {
 		if ( version_compare( $GLOBALS['wp_version'], '3.8', '<' ) ) {
 			add_action( 'admin_footer-themes.php', array( $this, 'admin_footer_themes_php' ) );
 		} else {
-			if ( version_compare( $GLOBALS['wp_version'], '3.9.9', '<' ) ) {
+			if ( version_compare( $GLOBALS['wp_version'], '4.0.9', '<' ) ) {
 				add_action( 'admin_footer-themes.php', array( $this, 'override_tmpl_theme_single' ) );
 			}
 			add_filter( 'wp_prepare_themes_for_js', array( $this, 'wp_prepare_themes_for_js' ) );
